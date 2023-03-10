@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-color: #fff6df;
+}
+form,
+input,
+select,
+textarea,
+button,
+a {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button {
+  background-color: #fcf9f2;
+  min-height: 30px;
+  border-color: #fcf9f2;
+  box-shadow: 1px solid #ece0cd;
+}
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,58 @@
+.Home-container {
+  .header {
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #2e4f4f;
+    color: #cbe4de;
+    button {
+      background-color: #2e4f4f;
+      width: 5rem;
+      height: 2rem;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #cbe4de;
+      color: #2e4f4f;
+      width: 5rem;
+      height: 2rem;
+      border: 1px #cbe4de solid;
+      border-radius: 5%;
+      cursor: pointer;
+    }
+  }
+  .dashboard {
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    div {
+      gap: 2rem;
+    }
+    button {
+      background-color: #2e4f4f;
+      width: 8rem;
+      height: 2.5rem;
+      border: none;
+      color: #cbe4de;
+      border-radius: 5%;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #cbe4de;
+      color: #2e4f4f;
+      width: 8rem;
+      height: 2.5rem;
+      border: 1px #cbe4de solid;
+      border-radius: 5%;
+      cursor: pointer;
+    }
+  }
+  .list-container {
+    padding: 1rem 2rem 1rem 2rem;
+  }
+}

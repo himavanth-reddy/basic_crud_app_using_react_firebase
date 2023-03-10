@@ -1,0 +1,71 @@
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+
+  justify-content: center;
+  .model-container {
+    background-color: #2e4f4f;
+    color: #cbe4de;
+    border: 1px solid #2e4f4f;
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .model-header {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      flex: 1;
+      h2 {
+        margin-left: 2rem;
+      }
+      p {
+        margin-right: 2rem;
+        cursor: pointer;
+        padding: 1rem;
+      }
+    }
+    .form-container {
+      width: 100%;
+      flex: 9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      .addemployeeform {
+        padding: 1rem 2rem 0 2rem;
+        //display: flex;
+        align-items: start;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        input {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+      }
+      button {
+        background-color: #2e4f4f;
+        width: 80%;
+        height: 2rem;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 2rem;
+      }
+      button:hover {
+        background-color: #cbe4de;
+        color: #2e4f4f;
+        width: 89%;
+        height: 2rem;
+        border: 1px #cbe4de solid;
+        cursor: pointer;
+      }
+    }
+  }
+}
