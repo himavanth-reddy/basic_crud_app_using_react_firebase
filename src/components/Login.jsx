@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
@@ -9,15 +9,6 @@ const Login = () => {
 
   const navigate = useNavigate();
   const auth = getAuth();
-  let authSessionToken = sessionStorage.getItem("Auth Token");
-
-  useEffect(() => {
-    if (authSessionToken) {
-      navigate("/");
-    }
-
-    return () => {};
-  }, [authSessionToken, navigate]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -27,7 +18,7 @@ const Login = () => {
           "Auth Token",
           userCredential._tokenResponse.refreshToken
         );
-        authSessionToken = sessionStorage.getItem("Auth Token");
+
         navigate("/");
       })
       .catch((error) => {

@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { app } from "../utils/firebase-config";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import "../styles/signup.scss";
@@ -22,6 +26,9 @@ const Signup = () => {
           email,
           password
         );
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
         sessionStorage.setItem(
           "Auth Token",
           userCredential._tokenResponse.refreshToken

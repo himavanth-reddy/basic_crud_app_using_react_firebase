@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
 import { app } from "../utils/firebase-config";
-import { getAuth } from "firebase/auth";
+
+import toast, { Toaster } from "react-hot-toast";
 import "../styles/addEmployeeModal.scss";
 const EditEmployeeModal = ({
   setEditModal,
@@ -9,6 +10,7 @@ const EditEmployeeModal = ({
   setData,
   data,
   editId,
+  uid,
 }) => {
   const empObj = employeeList.filter((emp) => {
     return emp.id === editId;
@@ -19,25 +21,30 @@ const EditEmployeeModal = ({
   const [title, setTitle] = useState(empObj[0].title);
   const [department, setDepartment] = useState(empObj[0].department);
   const [role, setRole] = useState(empObj[0].role);
-  const auth = getAuth();
-  const user = auth.currentUser.uid;
-
+  const userId = empObj[0].userId;
   const db = getFirestore(app);
   const docRef = doc(db, "employees", editId);
 
   const obj = {
-    id: editId,
+    userId: userId,
     name: name,
     email: email,
     title: title,
     department: department,
     role: role,
   };
+
   const onEditEmployee = async () => {
     if (name && email && title && department && role) {
-      await updateDoc(docRef, obj);
-      setEditModal(false);
-      setData(!data);
+      if (uid === obj.userId) {
+        await updateDoc(docRef, obj);
+        setEditModal(false);
+        setData(!data);
+      } else {
+        toast.error("User not authorised to modify", {
+          position: "bottom-center",
+        });
+      }
     }
   };
   return (
@@ -54,6 +61,7 @@ const EditEmployeeModal = ({
           </p>
         </div>
         <div className="form-container">
+          <Toaster />
           <form action="" className="addemployeeform">
             <label htmlFor="name">Name</label>
             <input
