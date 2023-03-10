@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
@@ -6,9 +6,19 @@ import "../styles/login.scss";
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [currentUser, setCurrentUser] = useState("");
+
   const navigate = useNavigate();
   const auth = getAuth();
+  let authSessionToken = sessionStorage.getItem("Auth Token");
+
+  useEffect(() => {
+    if (authSessionToken) {
+      navigate("/");
+    }
+
+    return () => {};
+  }, [authSessionToken, navigate]);
+
   const handleSignup = async (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -17,11 +27,9 @@ const Login = () => {
           "Auth Token",
           userCredential._tokenResponse.refreshToken
         );
-        setCurrentUser(auth.currentUser.uid);
-        console.log(currentUser);
+        authSessionToken = sessionStorage.getItem("Auth Token");
         navigate("/");
       })
-
       .catch((error) => {
         console.log(error.message);
         if (error.message === "Firebase: Error (auth/wrong-password).") {
@@ -30,6 +38,10 @@ const Login = () => {
           });
         } else if (error.message === "Firebase: Error (auth/user-not-found).") {
           toast.error("User not found", {
+            position: "bottom-center",
+          });
+        } else if (error.message === "Firebase: Error (auth/missing-email).") {
+          toast.error("enter email", {
             position: "bottom-center",
           });
         }

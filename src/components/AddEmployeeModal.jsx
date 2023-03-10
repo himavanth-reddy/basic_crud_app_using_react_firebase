@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { getAuth } from "firebase/auth";
 import { app } from "../utils/firebase-config";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
@@ -12,12 +12,15 @@ const AddEmployeeModal = ({ setAddModal, setData, data }) => {
   const [role, setRole] = useState("");
   const database = getFirestore(app);
   const collectionRef = collection(database, "employees");
+  const auth = getAuth();
+  const user = auth.currentUser.uid;
   const obj = {
     name: name,
     email: email,
     title: title,
     department: department,
     role: role,
+    userId: user,
   };
   const onAddEmployee = async () => {
     if (name && email && title && department && role) {

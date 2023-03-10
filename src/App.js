@@ -12,27 +12,13 @@ function App() {
       <Route
         path="/"
         element={
-          <ProtectedRoute authSessionToken={authSessionToken} route={"home"}>
+          <ProtectedRoute authSessionToken={authSessionToken}>
             <Homepage />
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/login"
-        element={
-          <ProtectedRoute authSessionToken={authSessionToken} route={"login"}>
-            <Login />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/signup"
-        element={
-          <ProtectedRoute authSessionToken={authSessionToken} route={"signup"}>
-            <Signup />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getFirestore, updateDoc, doc } from "firebase/firestore";
 import { app } from "../utils/firebase-config";
+import { getAuth } from "firebase/auth";
 import "../styles/addEmployeeModal.scss";
 const EditEmployeeModal = ({
   setEditModal,
@@ -18,6 +19,9 @@ const EditEmployeeModal = ({
   const [title, setTitle] = useState(empObj[0].title);
   const [department, setDepartment] = useState(empObj[0].department);
   const [role, setRole] = useState(empObj[0].role);
+  const auth = getAuth();
+  const user = auth.currentUser.uid;
+
   const db = getFirestore(app);
   const docRef = doc(db, "employees", editId);
 
